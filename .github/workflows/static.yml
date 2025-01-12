@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ME Momo's</title>
+	<style>
+		body {
+			background-color: #00332e;
+			color: white;
+			font-family: 'Poppins', sans-serif;
+			text-align: center;
+			padding: 50px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.try {
+			font-family: 'Pacifico', cursive;
+			color: #ffeb3b;
+			font-size: 40px;
+			margin-right: 10px;
+			vertical-align: middle;
+			text-align: left;
+		}
+
+		.me-momos {
+			font-family: 'Poppins', sans-serif;
+			color: #f44336;
+			font-size: 46px;
+			font-weight: 700;
+			margin: 0;
+			display: inline-block;
+			vertical-align: middle;
+		}
+
+		.slogan {
+			font-family: 'Pacifico', cursive;
+			color: #ffeb3b;
+			font-size: 20px;
+			margin-top: 5px;
+		}
+
+		header {
+			text-align: center;
+			margin-bottom: 20px;
+		}
+
+		.offers-banner {
+			margin-bottom: 10px;
+			width: 80%;
+			overflow: hidden;
+			position: relative;
+		}
+
+		.card-container {
+			perspective: 200px;
+			width: 150px;
+			height: 250px;
+			margin: auto;
+		}
+
+		.card {
+			width: 100%;
+			height: 100%;
+			position: relative;
+			transform-style: preserve-3d;
+			transition: transform 0.3s;
+			cursor: pointer;
+		}
+
+		.front, .back {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			backface-visibility: hidden;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 40px;
+			color: orange;
+		}
+
+		.front {
+			background-color: #00332e;
+		}
+
+		.back {
+			background-color: #00332e;
+			transform: rotateY(180deg);
+		}
+
+		.flip .card {
+			transform: rotateY(180deg);
+		}
+
+		.menu-category {
+			background: hidden;
+			border-radius: 5px;
+			box-shadow: 0 32px 64px rgba(0, 0, 0, 0.5);
+			margin: 10px;
+			padding: 20px;
+			width: automatic;
+			transform-style: preserve-3d;
+			transition: all 0.3s ease;
+			hight:10px
+		}
+
+		.menu-category h2 {
+			color: #ff4500;
+			cursor: pointer;
+			margin: 0;
+		}
+			.menu-category.active h2 {
+					color: orange;
+					font-weight: bold;
+			
+}
+		.menu-content {
+			color: orange;
+			max-height: 0;
+			overflow: hidden;
+			transition: max-height 0.3s ease;
+		}
+
+		.menu-category.active .menu-content {
+			max-height: 500px;
+		}
+
+		.menu-category ul {
+			list-style: none;
+			padding: 5px 0;
+		}
+
+		.menu-category li {
+			padding: 5px 0;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.menu-category li span:first-child {
+			flex: 1;
+			text-align: left;
+			margin-left: 10px;
+		}
+
+		.menu-category li::before {
+			content: '•';
+			color: red;
+		}
+
+		.menu-category li.no-dot::before {
+			content: none;
+		}
+
+		.subcategory {
+			color: #ff4500;
+			cursor: pointer;
+			margin: 5px 0;
+			text-align: left;
+		}
+
+		.subcategory-content {
+			color: orange;
+			max-height: 0;
+			overflow: hidden;
+			transform-style: preserve-3d;
+			transition: all 0.3s ease;
+			transition: max-height 0s;
+			padding-left: 20px;
+		}
+
+ 
+
+
+
+
+		.subcategory.active .subcategory-content {
+			max-height: 500px;
+		}
+
+		footer {
+			background-color: #00332e;
+			color: white;
+			padding: 20px;
+			text-align: center;
+			width: 100%;
+}
+
+		}
+
+		.contact-details {
+			margin-bottom: 20px;
+		}
+
+		.contact-details h2 {
+			margin-bottom: 10px;
+		}
+
+		.contact-details p {
+			margin: 5px 0;
+		}
+
+		.contact-details a {
+			color: #ffeb3b;
+			text-decoration: none;
+		}
+
+		.contact-details a:hover {
+			text-decoration: underline;
+		}
+
+		.social-media h3 {
+			margin-bottom: 10px;
+		}
+
+		.social-media a {
+			color: #ffeb3b;
+			text-decoration: none;
+			margin: 0 10px;
+		}
+
+		.social-media a:hover {
+			text-decoration: underline;
+		}
+
+		.sliding-text {
+			display: inline-block;
+			transition: transform 0.2s ease, margin-left 0.2s ease;
+		}
+
+		.menu-category.active h2 .sliding-text,
+		.subcategory.active .sliding-text {
+			margin-left:200px; 
+		
+			/* Adjust this value to move text to the right */
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="try">try</div>
+		<div class="me-momos">ME MOMO'S</div>
+		<div class="slogan">Where cravings meet satisfaction.</div>
+	</div>
+	<section class="offers-banner">
+		<div class="card-container" onclick="flipCard()">
+			<div class="card">
+				<div class="front">
+					SST COLLEGE
+				</div>
+				<div class="back">
+					GOONJ FEST
+				</div>
+			</div>
+		</div>
+	</section>
+	<main>
+		<section class="menu-category">
+			<h2 onclick="toggleAccordion(this)"><span class="sliding-text">MOMOS</span></h2>
+			<div class="menu-content">
+				<div class="subcategory">
+					
+				<div class="subcategory">
+					<div onclick="toggleSubcategory(this)"><span class="sliding-text">Veg Momos</span></div>
+					<div class="subcategory-content">
+						<ul>
+							<li><span>Veg Fried Momos</span><span>₹50</span></li>
+							<li><span>Paneer Fried Momos</span><span>₹70</span></li>
+<li><span>Paneer Tikka Fried Momos</span><span>₹85</span></li>
+							<li><span>Chees Corn Fried Momos</span><span>₹85</span></li>
+
+<li><span>Veg Chilli Momos</span><span>₹75</span></li>
+
+<li><span>Paneer Chilli Momos</span><span>₹85</span></li>
+
+<li><span>Paneer Tikka Chilli Momos</span><span>₹85</span></li>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="subcategory">
+					<div onclick="toggleSubcategory(this)"><span class="sliding-text">Momos Platter</span></div>
+					<div class="subcategory-content">
+						<ul>
+							
+							<li><span>Veg Momos Platter</span><span>₹85</span></li>
+							<li class="no-dot"><span>(2-Veg Fried Momos,2-Paneer Tikka Fried Momos,2-Paneer Fried Momos)</span></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		
+		
+		
+		<section class="menu-category">
+			<h2 onclick="toggleAccordion(this)"><span class="sliding-text">BURGER</span></h2>
+			<div class="menu-content">
+				<ul>
+					<li><span>Veg Kurkure Burger</span><span>₹60</span></li>
+					
+				</ul>
+			</div>
+		</section>
+
+		
+		<section class="menu-category">
+			<h2 onclick="toggleAccordion(this)"><span class="sliding-text">SNACKS & Beverage</span></h2>
+			<div class="menu-content">
+				<div class="subcategory">
+					<div onclick="toggleSubcategory(this)"><span class="sliding-text">Fries</span></div>
+					<div class="subcategory-content">
+						<ul>
+							<li><span>French Fries</span><span>₹50</span></li>
+							<li><span>Peri Peri French Fries</span><span>₹60</span></li>
+<li><span>Cheesy French Fries</span><span>₹60</span></li>
+
+<li><span>Peri Peri Cheese French Fries</span><span>₹65</span></li>
+							<li><span>Tandoori Cheese French Fries</span><span>₹65</span></li>
+							<li><span>Tandoori Peri Peri Cheese French Fries</span><span>₹70</span></li>
+							
+							
+						</ul>
+					</div>
+				</div>
+				<div class="subcategory">
+					<div onclick="toggleSubcategory(this)"><span class="sliding-text">Drinks</span></div>
+					<div class="subcategory-content">
+						<ul>
+							<li><span>Water(500ml)</span><span>₹10</span></li>
+							<li><span>Sprite(250ml)</span><span>₹20</span></li>
+
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	<footer>
+		<div class="contact-details">
+			<h2>Contact Us</h2>
+			<p><strong>Address:</strong> Hariom Plaza room no.1 Building no.1, Behind Church, Church Road, Kalyan (E)-421306</p>
+			<p><strong>Mobile:</strong> +91 9768 55 9898 / +91 9779 29 7282</p>
+			<p><strong>Email:</strong> <a href="mailto:trymemomos@Gmail.com">trymemomos@Gmail.com</a></p>
+			<p><strong>Opening Hours:</strong> Mon-Sun: 12:00 PM - 11:59 PM</p>
+		</div>
+		<div class="social-media">
+			<h3>Follow Us</h3>
+			<a href="https://facebook.com" target="_blank">Facebook</a> |
+			<a href="https://twitter.com" target="_blank">Twitter</a> |
+			<a href="https://instagram.com" target="_blank">Instagram</a>
+		</div>
+		<p>&copy; 2024 ME MOMO'S. All rights reserved.</p>
+	</footer>
+	<script>
+		function toggleAccordion(element) {
+			var category = element.parentElement;
+			var content = category.querySelector('.menu-content');
+			var isActive = category.classList.contains('active');
+
+			// Close all categories
+			document.querySelectorAll('.menu-category').forEach(function(cat) {
+				cat.classList.remove('active');
+				cat.querySelector('.menu-content').style.maxHeight = null;
+			});
+
+			// If the clicked category was not active, open it
+			if (!isActive) {
+				category.classList.add('active');
+				content.style.maxHeight = content.scrollHeight + "px";
+			}
+		}
+
+		function toggleSubcategory(element) {
+			var subcategory = element.parentElement;
+			var content = subcategory.querySelector('.subcategory-content');
+			var isActive = subcategory.classList.contains('active');
+
+			// Close all other subcategories within the same menu category
+			var menuCategory = subcategory.closest('.menu-category');
+			var allSubcategories = menuCategory.querySelectorAll('.subcategory');
+			allSubcategories.forEach(function(sub) {
+				if (sub !== subcategory) {
+					sub.classList.remove('active');
+					sub.querySelector('.subcategory-content').style.maxHeight = null;
+				}
+			});
+
+			// Toggle the clicked subcategory
+			if (isActive) {
+				subcategory.classList.remove('active');
+				content.style.maxHeight = null;
+			} else {
+				subcategory.classList.add('active');
+				content.style.maxHeight = content.scrollHeight + "px";
+			}
+
+			// Adjust the height of the parent category
+			var menuContent = menuCategory.querySelector('.menu-content');
+			menuContent.style.maxHeight = menuContent.scrollHeight + "px";
+		}
+
+		function flipCard() {
+			document.querySelector('.card-container').classList.toggle('flip');
+		}
+
+		document.addEventListener('DOMContentLoaded', (event) => {
+			setInterval(flipCard, 3000);
+		});
+	</script>
+</body>
+</html>
